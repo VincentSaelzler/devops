@@ -39,7 +39,7 @@
     - name: Install extensions via VS Code CLI
       shell: "code --install-extension {{ item }}"
       loop:
-        # general utilities
+        # general ide utilities
         - davidanson.vscode-markdownlint
         - bierner.markdown-preview-github-styles
         # ansible projects
