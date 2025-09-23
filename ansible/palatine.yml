@@ -2,7 +2,7 @@
 - name: System level configurations
   hosts: localhost
   gather_facts: false
-  become: false
+  become: true
 
   tasks:
     - name: Install system packages.
