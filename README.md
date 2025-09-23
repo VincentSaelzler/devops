@@ -59,10 +59,10 @@ manually add ssh key to cloud infrastructure platforms.
 - github.com > pic > settings > ssh and gpg keys
 
 ```sh
-git clone <git@github.com>:VincentSaelzler/devops.git
+git clone git@github.com:VincentSaelzler/devops.git
 # trust this ssh key fingerprint
 SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
-ansible-playbook ~/devops/ansible/workstation.yml
+ansible-playbook ~/devops/ansible/palatine.yml
 ```
 
 ## under construction...
