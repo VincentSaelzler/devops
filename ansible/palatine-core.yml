@@ -1,22 +1,23 @@
 ---
-- name: system level configurations
+- name: system level configuration
   hosts: localhost
   gather_facts: false
   become: true
 
   tasks:
-    - name: install system packages.
+    - name: install system packages
       community.general.pacman:
         name:
           # core utilities and ide
           - less
           - nano
           - code
+          - which
           # web dev
           - ruby
           - base-devel
 
-- name: configure git global identity
+- name: user level configuration
   hosts: localhost
   gather_facts: false
   become: false

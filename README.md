@@ -54,13 +54,13 @@ non-root wsl shell. open arch linux using start menu
 
 ```sh
 # install system dependencies
-sudo pacman -S git pipx openssh
-# install ansible
+sudo pacman -S git python-pipx openssh
 pipx ensurepath
 source ~/.bashrc
-pipx install ansible
-pipx inject ansible linode_api4
-pipx install ansible
+# install ansible
+pipx install ansible-core
+pipx inject ansible-core linode_api4
+ansible-galaxy collection install community.general
 # create ssh key
 ssh-keygen
 cat ~/.ssh/id_ed25519.pub
@@ -74,7 +74,7 @@ add ssh key to cloud infrastructure platforms.
 ```sh
 git clone git@github.com:VincentSaelzler/devops.git
 # trust this ssh key fingerprint
-SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
+# SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
 ```
 
 ### automated configuration
