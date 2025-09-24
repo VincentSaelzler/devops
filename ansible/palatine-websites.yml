@@ -1,9 +1,10 @@
-- name: Install system-wide ruby gems
+---
+- name: install system-wide ruby gems
   hosts: localhost
   become: true
   gather_facts: false
   tasks:
-    - name: Ensure each gem is installed
+    - name: ensure each gem is installed
       community.general.gem:
         name: "{{ item }}"
         user_install: no
@@ -12,7 +13,7 @@
         - jekyll-feed
         - erb
 
-- name: Clone and build jekyll websites.
+- name: clone and build jekyll websites.
   hosts: localhost
   become: false
   gather_facts: false
@@ -23,11 +24,11 @@
       - homepage
 
   tasks:
-    - name: Clone websites repo, recursively.
+    - name: clone websites repo, recursively.
       git:
         repo: git@github.com:VincentSaelzler/websites.git
         dest: ~/websites
-    - name: Check out the main branch of each submodule
+    - name: check out the main branch of each submodule
       ansible.builtin.command:
         cmd: git checkout main
       args:

@@ -2,6 +2,10 @@
 
 ## development environment
 
+windows with wsl installed
+
+### manual configuration
+
 windows powershell as administrator
 
 ```ps
@@ -16,13 +20,12 @@ root wsl shell should auto-start. if not, use `wsl --distribution archlinux`
 > ⚠️ restart windows if dns networking issues occur
 
 ```sh
-# locale configuration
+# locale
 sed '/^#en_US.UTF-8 UTF-8/s/^#//' /etc/locale.gen -i
 locale-gen
 ln -sf /etc/locale.conf /etc/default/locale
 echo 'LANG=en_US.UTF-8' > /etc/default/locale
-useradd --create-home --groups wheel marcus
-# wsl configuration
+# wsl
 cat > /etc/wsl.conf << 'EOF'
 [boot]
 systemd=true
@@ -31,7 +34,8 @@ default=marcus
 [network]
 hostname=palatine
 EOF
-# passwordless sudo
+# non-root user and passwordless sudo
+useradd --create-home --groups wheel marcus
 pacman -Syu sudo vi
 visudo
 # uncomment this line (near the end of the file)
@@ -42,7 +46,7 @@ exit
 back to windows powershell as administrator
 
 ```ps
-# rebooting from within wsl does NOT work
+# rebooting from within wsl does not work
 wsl --terminate archlinux
 ```
 
@@ -54,7 +58,7 @@ ssh-keygen
 cat ~/.ssh/id_ed25519.pub
 ```
 
-manually add ssh key to cloud infrastructure platforms.
+add ssh key to cloud infrastructure platforms.
 
 - github.com > pic > settings > ssh and gpg keys
 
@@ -62,19 +66,14 @@ manually add ssh key to cloud infrastructure platforms.
 git clone git@github.com:VincentSaelzler/devops.git
 # trust this ssh key fingerprint
 SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
-ansible-playbook ~/devops/ansible/palatine.yml
 ```
 
-## under construction...
+### automated configuration
 
-need ansible locally in order to make the remote server do anything  
-dev setup for python projects on arch  
-install ansible-core on arch
+ansible handles everything else
 
-```yml
-{
-    "editor.formatOnSave": true
-}
+```sh
+ansible-playbook ~/devops/ansible/palatine.yml
 ```
 
 ## useful commands

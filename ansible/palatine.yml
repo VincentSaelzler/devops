@@ -1,2 +1,3 @@
+---
 - import_playbook: palatine-core.yml
 - import_playbook: palatine-websites.yml
