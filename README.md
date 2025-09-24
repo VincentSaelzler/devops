@@ -59,7 +59,7 @@ pipx ensurepath
 source ~/.bashrc
 # install ansible
 pipx install ansible-core
-pipx inject ansible-core linode_api4
+pipx inject ansible-core linode_api4 ansible_specdoc
 ansible-galaxy collection install community.general
 # create ssh key
 ssh-keygen
