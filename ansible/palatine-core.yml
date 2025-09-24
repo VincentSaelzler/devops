@@ -1,0 +1,50 @@
+---
+- name: System level configurations
+  hosts: localhost
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Install system packages.
+      community.general.pacman:
+        name:
+          # core utilities and ide
+          - less
+          - nano
+          - code
+          # web dev
+          - ruby
+          - base-devel
+
+- name: Configure Git global identity
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Set Git global user.name
+      ansible.builtin.git_config:
+        name: user.name
+        scope: global
+        value: "Vincent Saelzler"
+
+    - name: Set Git global user.email
+      ansible.builtin.git_config:
+        name: user.email
+        scope: global
+        value: "vincent.saelzler@gmail.com"
+
+    - name: Set Git global initial branch name
+      ansible.builtin.git_config:
+        name: init.defaultBranch
+        scope: global
+        value: "main"
+
+    - name: Install extensions via VS Code CLI
+      shell: "code --install-extension {{ item }}"
+      loop:
+        # general ide utilities
+        - davidanson.vscode-markdownlint
+        - bierner.markdown-preview-github-styles
+        # ansible projects
+        - redhat.vscode-yaml
