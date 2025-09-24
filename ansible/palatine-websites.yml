@@ -10,7 +10,6 @@
         user_install: no
       loop:
         - minimal-mistakes-jekyll
-        - jekyll-feed
         - erb
 
 - name: clone and build jekyll websites.
