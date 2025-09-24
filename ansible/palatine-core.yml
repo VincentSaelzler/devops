@@ -22,6 +22,11 @@
   become: false
 
   tasks:
+    - name: install additional ansible collections
+      community.general.ansible_galaxy_install:
+        type: collection
+        name: linode.cloud
+
     - name: set git global user.name
       ansible.builtin.git_config:
         name: user.name

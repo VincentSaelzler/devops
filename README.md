@@ -53,14 +53,23 @@ wsl --terminate archlinux
 non-root wsl shell. open arch linux using start menu
 
 ```sh
-sudo pacman -S git ansible openssh
+# install system dependencies
+sudo pacman -S git pipx openssh
+# install ansible
+pipx ensurepath
+source ~/.bashrc
+pipx install ansible
+pipx inject ansible linode_api4
+pipx install ansible
+# create ssh key
 ssh-keygen
 cat ~/.ssh/id_ed25519.pub
 ```
 
 add ssh key to cloud infrastructure platforms.
 
-- github.com > pic > settings > ssh and gpg keys
+- github.com > pic top right > settings > ssh and gpg keys
+- linode.com > name top right > ssh keys
 
 ```sh
 git clone git@github.com:VincentSaelzler/devops.git

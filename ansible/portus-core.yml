@@ -1,0 +1,16 @@
+---
+- name: call linode api to create cloud resources
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: create a new linode instance.
+      linode.cloud.instance:
+        state: "present"
+        label: "portus"
+        type: "g6-nanode-1"
+        region: "us-central"
+        image: "linode/arch"
+        root_pass: "temp-for-testing"
+        private_ip: false
+        authorized_users:
+          - "vincent-saelzler"
