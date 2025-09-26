@@ -54,15 +54,25 @@ non-root wsl shell. open arch linux using start menu
 
 ```sh
 # install system dependencies
-sudo pacman -S git python-pipx openssh
+sudo pacman -S git python-pipx openssh pass gnupg
 pipx ensurepath
 source ~/.bashrc
 # install ansible
 pipx install ansible-core
 pipx inject ansible-core linode_api4 ansible_specdoc
 ansible-galaxy collection install community.general
-# create ssh key
+# create ssh and gpg keys
 ssh-keygen
+gpg --full-generate-key
+```
+
+```sh
+# configure pass
+pass init # [gpg key id]
+pass insert ansible/vault
+# [enter ansible vault password]
+# show gpg and ssh key info
+gpg --armor --export
 cat ~/.ssh/id_ed25519.pub
 ```
 
