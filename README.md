@@ -76,7 +76,7 @@ gpg --armor --export
 cat ~/.ssh/id_ed25519.pub
 ```
 
-add ssh key to cloud infrastructure platforms.
+add ssh and gpg keys to cloud infrastructure platforms.
 
 - github.com > pic top right > settings > ssh and gpg keys
 - linode.com > name top right > ssh keys
