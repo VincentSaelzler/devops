@@ -46,6 +46,18 @@
         scope: global
         value: "main"
 
+    - name: specify which gpg key to use
+      community.general.git_config:
+        name: user.signingkey
+        value: 520E090669AA4EA8
+        scope: global
+
+    - name: enable commit signing globally
+      community.general.git_config:
+        name: commit.gpgsign
+        value: true
+        scope: global
+
     - name: install extensions via vs code cli
       shell: "code --install-extension {{ item }}"
       loop:
