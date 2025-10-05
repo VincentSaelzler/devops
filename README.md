@@ -93,6 +93,7 @@ ansible handles everything else
 
 ```sh
 ansible-playbook ~/devops/ansible/palatine.yml
+code-oss ~/devops/
 ```
 
 ## useful commands

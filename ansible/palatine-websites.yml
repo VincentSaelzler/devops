@@ -12,7 +12,7 @@
         - minimal-mistakes-jekyll
         - erb
 
-- name: clone and build jekyll websites.
+- name: clone jekyll websites, ready for development
   hosts: localhost
   become: false
   gather_facts: false
