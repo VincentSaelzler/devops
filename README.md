@@ -1,10 +1,18 @@
 # devops
 
-## development environment
+create a local developement environment for python projects and websites
 
-windows with wsl installed
+provision cloud resources on linode to host websites
 
-### manual configuration
+## operating system and ide
+
+arch linux on windows subsystem for linux
+
+ide is the fully open source version of visual studio code from arch package manager
+
+**not** using the propriatary remote-wsl visual studio code extension from microsoft
+
+## install arch linux
 
 windows powershell as administrator
 
@@ -15,9 +23,17 @@ wsl --unregister archlinux
 wsl --install archlinux
 ```
 
-root wsl shell should auto-start. if not, use `wsl --distribution archlinux`
+root wsl shell should auto-start and run an inital script related to pacman keys
 
-> ⚠️ restart windows if dns networking issues occur
+type `exit` twice once that finishes to close the powershell window
+
+## arch bootstrapping: locale, user, hostname
+
+start **archlinux** app from start menu
+
+> ⚠️ restart windows if dns networking issues occur  
+> ⚠️ paste by right clicking the blank area in the wsl/archlinux app  
+> ⚠️ copy/pasting within a wsl prompt of a powershell window can be inconsistent
 
 ```sh
 # locale
@@ -43,32 +59,41 @@ visudo
 exit
 ```
 
-back to windows powershell as administrator
+back to windows powershell (admin not required)
 
 ```ps
 # rebooting from within wsl does not work
 wsl --terminate archlinux
 ```
 
-non-root wsl shell. open arch linux using start menu
+## dependencies
+
+open **archlinux** app using start menu
+
+prompt should now say `marcus@palatine`
 
 ```sh
-# install system dependencies
+# install system packages
 sudo pacman -S git python-pipx openssh pass gnupg
 pipx ensurepath
 source ~/.bashrc
-# install ansible
+# install ansible and supporting python libraries
 pipx install ansible-core
 pipx inject ansible-core linode_api4 ansible_specdoc
 ansible-galaxy collection install community.general
-# create ssh and gpg keys
-ssh-keygen
-gpg --full-generate-key
 ```
 
+## secrets
+
+> ⚠️ hard-coded name and email address  
+> ⚠️ ansible vault password must be stored/managed externally
+
 ```sh
+# create ssh and gpg keys
+ssh-keygen
+gpg --quick-gen-key "Vincent Saelzler <vincent.saelzler@gmail.com>"
 # configure pass
-pass init # [gpg key id]
+pass init vincent.saelzler@gmail.com
 pass insert ansible/vault
 # [enter ansible vault password]
 # show gpg and ssh key info
@@ -87,12 +112,17 @@ git clone git@github.com:VincentSaelzler/devops.git
 # SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU
 ```
 
-### automated configuration
+## automated configuration
 
-ansible handles everything else
+ansible handles everything else to set up the development environment and clone project repositories
 
 ```sh
 ansible-playbook ~/devops/ansible/palatine.yml
+```
+
+## open visual studio code
+
+```sh
 code-oss ~/devops/
 ```
 
