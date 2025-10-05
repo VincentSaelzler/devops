@@ -61,8 +61,9 @@ exit
 
 back to windows powershell (admin not required)
 
+> ⚠️ rebooting from within wsl does not work
+
 ```ps
-# rebooting from within wsl does not work
 wsl --terminate archlinux
 ```
 
