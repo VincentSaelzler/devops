@@ -124,6 +124,7 @@ ansible-playbook ~/devops/ansible/palatine.yml
 
 ```sh
 code-oss ~/devops/
+code-oss ~/websites/
 ```
 
 ## useful commands
