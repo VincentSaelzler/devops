@@ -60,6 +60,11 @@
         - bierner.markdown-preview-github-styles
         # ansible projects
         - redhat.vscode-yaml
+        # python projects
+        - ms-python.python
+        - ms-python.black-formatter
+        - ms-python.isort
+        - ms-pyright.pyright
 
     - name: set personalized vs code configurations
       copy:
